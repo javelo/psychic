@@ -2,7 +2,7 @@
 import { Breadcrumb, Button, Label, TextInput, Spinner } from "flowbite-react";
 import type { FC } from "react";
 import { useState } from "react";
-import { usePsychicLink } from "@psychic-api/link";
+import { usePsychicLink } from "@psychic-api/link"; //use custom version
 import { usePostHog } from "posthog-js/react";
 
 import { HiHome } from "react-icons/hi";

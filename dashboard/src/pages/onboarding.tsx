@@ -149,7 +149,7 @@ const OnboardingPage: FC = function () {
                 <Text className="mb-4">Here's an example:</Text>
                 <SyntaxHighlighter language="javascript" style={dracula}>
                   {`import React, { useState } from 'react';
-import { usePsychicLink } from '@psychic-api/link';
+import { usePsychicLink } from '@psychic-api/link'; //use custom version
 
 const PsychicDemo: React.FC = () => {
   const [connection, setConnection] = useState(null)
