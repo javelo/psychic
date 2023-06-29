@@ -125,6 +125,10 @@ const DropboxAuthFlow: React.FC = () => {
   }
 
   const handleMessage = useCallback((event: MessageEvent) => {
+    // check if oigin is not http://localhost:5173 or link.psychic.dev
+    if (event.origin !== "http://localhost:3000" && event.origin !== process.env.REACT_APP_PSYCHIC_LINK_URL) {
+      return;
+    }
     const data = event.data;
     if (data && data.psychic_link &&  data.code && !authCodeHandled.current) {
       authCodeHandled.current = true
