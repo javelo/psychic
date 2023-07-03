@@ -453,4 +453,7 @@ async def run_sync(
         raise HTTPException(status_code=500, detail=str(e))
 
 def start():
-    uvicorn.run("server.main:app", host="0.0.0.0", port=8080, reload=True)
+    # uvicorn.run("server.main:app", host="0.0.0.0", port=8080, reload=True)
+    # use env var for port or default to 8080
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run("server.main:app", host="0.0.0.0", port=port, reload=True)
