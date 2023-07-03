@@ -14,3 +14,10 @@ View the API reference and interactive playground in the [Psychic docs](https://
 ## Contributing
 
 Psychic is open for contribution! See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines.
+
+## Environment variables
+
+- SUPABASE_URL
+- SUPABASE_KEY
+- POSTHOG_API_KEY
+- POSTHOG_HOST

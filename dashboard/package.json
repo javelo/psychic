@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.21.0",
-    "@psychic-api/link": "^1.0.9",
+    "@psychic-api/link": "file:./psychic-link",
     "@supabase/auth-ui-react": "^0.4.2",
     "@supabase/auth-ui-shared": "^0.1.6",
     "@supabase/supabase-js": "^2.26.0",
