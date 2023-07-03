@@ -2,7 +2,8 @@
 import { Breadcrumb, Button, Label, TextInput, Spinner } from "flowbite-react";
 import type { FC } from "react";
 import { useState } from "react";
-import { usePsychicLink } from "@psychic-api/link"; //use custom version
+// import { usePsychicLink } from "@psychic-api/link"; //use custom version
+import { usePsychicLink } from "../../psychic-link"; //use custom version
 import { usePostHog } from "posthog-js/react";
 
 import { HiHome } from "react-icons/hi";
@@ -60,6 +61,7 @@ export const ConnectorPlayground: FC<ConnectorPlaygroundProps> = function ({
 
   const { open, isReady, isLoading, error } = usePsychicLink(
     publicKey,
+    import.meta.env.VITE_PSYCHIC_API_URL ?? '',
     (newConnection: { accountId: string; connectorId: string }) => {
       setNewConnection(newConnection);
       console.log(newConnection);
