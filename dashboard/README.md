@@ -7,10 +7,8 @@ Before building you must copy to a `.env` file the `.env.example` file and fill 
 - VITE_SUPABASE_URL
 - VITE_SUPABASE_KEY
 - VITE_PSYCHIC_LINK_OAUTH_URL
+- VITE_PSYCHIC_API_URL
 - VITE_SERVER_URL (optional)
-- VITE_PUBLIC_POSTHOG_DISABLED=true
-- VITE_PUBLIC_POSTHOG_HOST (optional)
-- VITE_PUBLIC_POSTHOG_KEY (optional)
 
 
 

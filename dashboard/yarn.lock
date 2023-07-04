@@ -2023,11 +2023,6 @@ fault@^1.0.0:
   dependencies:
     format "^0.2.0"
 
-fflate@^0.4.1:
-  version "0.4.8"
-  resolved "https://registry.npmjs.org/fflate/-/fflate-0.4.8.tgz"
-  integrity sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==
-
 figures@^3.0.0:
   version "3.2.0"
   resolved "https://registry.npmjs.org/figures/-/figures-3.2.0.tgz"
@@ -3678,13 +3673,6 @@ postcss@^8.4.23, postcss@^8.4.24, postcss@^8.4.4:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
-
-posthog-js@^1.68.5:
-  version "1.68.5"
-  resolved "https://registry.npmjs.org/posthog-js/-/posthog-js-1.68.5.tgz"
-  integrity sha512-EqQuIX0k564T2fhmzQK2Gcb8s/XRhHTpk6JOeGtJV7lpMI8Hffe+gGjGHcqIc4RoOg3LjAGYNHj6XgN+QPggLg==
-  dependencies:
-    fflate "^0.4.1"
 
 prelude-ls@^1.2.1:
   version "1.2.1"

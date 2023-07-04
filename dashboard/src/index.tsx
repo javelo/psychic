@@ -1,8 +1,6 @@
 import type { FC } from "react";
 import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
-import posthog from "posthog-js";
-import { PostHogProvider } from "posthog-js/react";
 import { Helmet } from "react-helmet";
 
 import "./index.css";
@@ -40,16 +38,6 @@ const container = document.getElementById("root");
 
 if (typeof (window as any).global === "undefined") {
   (window as any).global = window;
-}
-
-if (
-  !import.meta.env.VITE_PUBLIC_POSTHOG_DISABLED &&
-  !window.location.host.includes("127.0.0.1") &&
-  !window.location.host.includes("localhost")
-) {
-  posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
-    api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
-  });
 }
 
 if (!container) {
@@ -120,79 +108,77 @@ function App() {
     );
   } else {
     return (
-      <PostHogProvider client={posthog}>
-        <Flowbite theme={{ theme }}>
-          <Helmet
-            onChangeClientState={(newState) => handleScriptInject(newState)}
-          >
-            <script>
-              {`(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/tdxqbjpq';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`}
-            </script>
-          </Helmet>
-          <UserStateProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<RootPage />} />
-                <Route path="/onboarding" element={<OnboardingPage />} />
-                <Route path="/api-keys" element={<ApiKeysPage />} />
-                <Route path="/connections" element={<ConnectionsPage />} />
-                <Route
-                  path="/connectors/notion"
-                  element={<NotionConnectorPage />}
-                />
-                <Route
-                  path="/connectors/google-drive"
-                  element={<GoogleDriveConnectorPage />}
-                />
-                <Route
-                  path="/connectors/zendesk"
-                  element={<ZendeskConnectorPage />}
-                />
-                <Route
-                  path="/connectors/confluence"
-                  element={<ConfluenceConnectorPage />}
-                />
-                <Route
-                  path="/connectors/slack"
-                  element={<SlackConnectorPage />}
-                />
-                <Route
-                  path="/connectors/dropbox"
-                  element={<DropboxConnectorPage />}
-                />
-                <Route
-                  path="/connectors/intercom"
-                  element={<IntercomConnectorPage />}
-                />
-                <Route
-                  path="/connectors/hubspot"
-                  element={<HubspotConnectorPage />}
-                />
-                <Route
-                  path="/connectors/salesforce"
-                  element={<SalesforceConnectorPage />}
-                />
-                <Route
-                  path="/connectors/readme"
-                  element={<ReadmeConnectorPage />}
-                />
-                <Route
-                  path="/connectors/website"
-                  element={<WebsiteConnectorPage />}
-                />
-                <Route path="/oauth/redirect" element={<RedirectPage />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/syncs" element={<SyncsPage />} />
-                <Route path="/playground" element={<CreateConnectionPage />} />
-                <Route
-                  path="/create-connection"
-                  element={<CreateConnectionPage />}
-                />
-              </Routes>
-            </BrowserRouter>
-          </UserStateProvider>
-        </Flowbite>
-      </PostHogProvider>
+      <Flowbite theme={{ theme }}>
+        <Helmet
+          onChangeClientState={(newState) => handleScriptInject(newState)}
+        >
+          <script>
+            {`(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/tdxqbjpq';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`}
+          </script>
+        </Helmet>
+        <UserStateProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<RootPage />} />
+              <Route path="/onboarding" element={<OnboardingPage />} />
+              <Route path="/api-keys" element={<ApiKeysPage />} />
+              <Route path="/connections" element={<ConnectionsPage />} />
+              <Route
+                path="/connectors/notion"
+                element={<NotionConnectorPage />}
+              />
+              <Route
+                path="/connectors/google-drive"
+                element={<GoogleDriveConnectorPage />}
+              />
+              <Route
+                path="/connectors/zendesk"
+                element={<ZendeskConnectorPage />}
+              />
+              <Route
+                path="/connectors/confluence"
+                element={<ConfluenceConnectorPage />}
+              />
+              <Route
+                path="/connectors/slack"
+                element={<SlackConnectorPage />}
+              />
+              <Route
+                path="/connectors/dropbox"
+                element={<DropboxConnectorPage />}
+              />
+              <Route
+                path="/connectors/intercom"
+                element={<IntercomConnectorPage />}
+              />
+              <Route
+                path="/connectors/hubspot"
+                element={<HubspotConnectorPage />}
+              />
+              <Route
+                path="/connectors/salesforce"
+                element={<SalesforceConnectorPage />}
+              />
+              <Route
+                path="/connectors/readme"
+                element={<ReadmeConnectorPage />}
+              />
+              <Route
+                path="/connectors/website"
+                element={<WebsiteConnectorPage />}
+              />
+              <Route path="/oauth/redirect" element={<RedirectPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/syncs" element={<SyncsPage />} />
+              <Route path="/playground" element={<CreateConnectionPage />} />
+              <Route
+                path="/create-connection"
+                element={<CreateConnectionPage />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </UserStateProvider>
+      </Flowbite>
     );
   }
 }
