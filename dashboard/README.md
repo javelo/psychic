@@ -8,7 +8,6 @@ Before building you must copy to a `.env` file the `.env.example` file and fill 
 - VITE_SUPABASE_KEY
 - VITE_PSYCHIC_LINK_OAUTH_URL
 - VITE_PSYCHIC_API_URL
-- VITE_SERVER_URL (optional)
 
 
 

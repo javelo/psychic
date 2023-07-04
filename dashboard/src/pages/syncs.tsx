@@ -92,7 +92,7 @@ const ProductsTable: FC = function () {
 
   async function testSync() {
     setManualSyncLoading(true);
-    const url = import.meta.env.VITE_SERVER_URL + "/run-sync";
+    const url = import.meta.env.VITE_PSYCHIC_API_URL + "/run-sync";
     const payload = {
       sync_all: false,
     };
