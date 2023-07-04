@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const PSYCHIC_URL = 'https://link.psychic.dev';
-// const PSYCHIC_API_URL = 'http://localhost:8080'
-const PSYCHIC_API_URL = 'https://sidekick-ezml2kwdva-uc.a.run.app'; // We need to be able to provide this url as a parameter
+const PSYCHIC_URL = import.meta.env.VITE_PSYCHIC_LINK_OAUTH_URL ?? 'https://psychic.link';
+const PSYCHIC_API_URL = import.meta.env.VITE_PSYCHIC_API_URL ?? 'https://api.psychic.link';
 
 function usePsychicLink(public_key: string, public_api_url: string, onSuccessCallback: Function) {
   const [isReady, setIsReady] = useState<boolean>(false);
