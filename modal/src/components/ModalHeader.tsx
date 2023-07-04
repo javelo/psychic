@@ -26,7 +26,7 @@ const ModalHeader: React.FC = () => {
       )
     }
 
-    const shouldHide = (whitelabel && currentStep == 1) ? true : false
+    const shouldHide = (whitelabel && currentStep === 1) ? true : false
     
     return (
       <div>

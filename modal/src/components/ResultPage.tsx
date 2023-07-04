@@ -45,7 +45,7 @@ const ResultPage: React.FC = () => {
       )
     }
 
-    // if (selectedConnectorId == 'gdrive' && metadata == null) {
+    // if (selectedConnectorId === 'gdrive' && metadata === null) {
     //   return (
     //     <MetadataForm  />
     //   )

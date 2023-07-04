@@ -44,19 +44,6 @@ export enum AuthMethod {
   OAUTH = 'oauth',
   API_KEY = 'api_key'
 }
-type OauthPayload = {
-  connector_id: string;
-  account_id: string;
-  auth_code?: string;
-  metadata?: string;
-}
-
-type ApiKeyPayload = {
-  connector_id: string;
-  account_id: string;
-  credential?: any;
-  metadata?: string;
-}
 
 // Create a context
 const ModalContext = createContext<ModalContextType | null>(null);
@@ -158,6 +145,8 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
             setCustomerLogoUrl('https://uploads-ssl.webflow.com/6401c72af7f8fc5af247a5c7/644d9f332d59bb5fbb0b60e3_Icon%20(3).png');
             setWhitelabel(false);
             setEnabledConnectors([]);
+            console.log(error);
+            return;
           }
         });
     }
@@ -177,16 +166,16 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
       method = AuthMethod.OAUTH
     }
     
-    const url = method == AuthMethod.OAUTH ? 
+    const url = method === AuthMethod.OAUTH ? 
       PSYCHIC_URL + '/add-oauth-connection' : PSYCHIC_URL + '/add-apikey-connection';
 
     var payload: any = {
       account_id: accountId,
       connector_id: connectorId
     }
-    if (method == AuthMethod.OAUTH && authCode) {
+    if (method === AuthMethod.OAUTH && authCode) {
         payload.auth_code = authCode
-    } else if (method == AuthMethod.API_KEY && credential) {
+    } else if (method === AuthMethod.API_KEY && credential) {
         payload.credential = credential
     }
     if (metadata) {
