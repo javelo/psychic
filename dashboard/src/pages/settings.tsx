@@ -70,7 +70,6 @@ const ProductsTable: FC = function () {
     { id: "slack", name: "Slack" },
     { id: "dropbox", name: "Dropbox" },
     { id: "zendesk", name: "Zendesk" },
-    { id: "intercom", name: "Intercom" },
     { id: "hubspot", name: "Hubspot" },
     { id: "notion", name: "Notion" },
     { id: "readme", name: "Readme.com" },
