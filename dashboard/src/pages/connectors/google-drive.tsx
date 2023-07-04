@@ -55,7 +55,8 @@ const GoogleDriveConnectorPage: FC = function () {
     setAuthLoading(true);
     setError("");
     const url =
-      import.meta.env.VITE_SERVER_URL + "/set-custom-connector-credentials";
+      import.meta.env.VITE_PSYCHIC_API_URL +
+      "/set-custom-connector-credentials";
     let clientSecretJson = null;
     try {
       clientSecretJson = JSON.parse(clientSecret);
@@ -108,7 +109,8 @@ const GoogleDriveConnectorPage: FC = function () {
 
   useEffect(() => {
     async function getConnectorStatus() {
-      const url = import.meta.env.VITE_SERVER_URL + "/get-connector-status";
+      const url =
+        import.meta.env.VITE_PSYCHIC_API_URL + "/get-connector-status";
       console.log(url);
       const payload = {
         connector_id: "gdrive",
@@ -149,7 +151,7 @@ const GoogleDriveConnectorPage: FC = function () {
 
   const deleteConnection = async (accountId: string, i: number) => {
     setDeleteLoading(true);
-    const url = import.meta.env.VITE_SERVER_URL + "/delete-connection";
+    const url = import.meta.env.VITE_PSYCHIC_API_URL + "/delete-connection";
     const payload = {
       connector_id: "gdrive",
       account_id: accountId,

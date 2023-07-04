@@ -133,16 +133,6 @@ const DashboardSidebar: FC = function () {
                     Dropbox
                   </Sidebar.Item>
                   <Sidebar.Item
-                    href="/connectors/intercom"
-                    className={
-                      "/connectors/intercom" === currentPage
-                        ? "bg-gray-100 dark:bg-gray-700"
-                        : ""
-                    }
-                  >
-                    Intercom
-                  </Sidebar.Item>
-                  <Sidebar.Item
                     href="/connectors/hubspot"
                     className={
                       "/connectors/hubspot" === currentPage

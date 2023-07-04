@@ -10,7 +10,6 @@ import ZendeskAuthFlow from './components/auth/ZendeskAuthFlow';
 import ConfluenceAuthFlow from './components/auth/ConfluenceAuthFlow';
 import SlackAuthFlow from './components/auth/SlackAuthFlow';
 import DropboxAuthFlow from './components/auth/DropboxAuthFlow';
-import IntercomAuthFlow from './components/auth/IntercomAuthFlow';
 import HubspotAuthFlow from './components/auth/HubspotAuthFlow';
 import ReadmeAuthFlow from './components/auth/ReadmeAuthFlow';
 import SalesforceAuthFlow from './components/auth/SalesforceAuthFlow';
@@ -42,29 +41,27 @@ const App: React.FC = () => {
       case 1:
         return <ConnectorPage />
       case 2:
-        if (selectedConnectorId == "notion") {
+        if (selectedConnectorId === "notion") {
           return <NotionAuthFlow />
-        } else if (selectedConnectorId == "gdrive") {
+        } else if (selectedConnectorId === "gdrive") {
           return <GDriveAuthFlow />
-        } else if (selectedConnectorId == "zendesk") {
+        } else if (selectedConnectorId === "zendesk") {
           return <ZendeskAuthFlow />
-        } else if (selectedConnectorId == "confluence") {
+        } else if (selectedConnectorId === "confluence") {
           return <ConfluenceAuthFlow />
-        } else if (selectedConnectorId == "github") {
+        } else if (selectedConnectorId === "github") {
           return <div>Github</div>
-        } else if (selectedConnectorId == "slack") {
+        } else if (selectedConnectorId === "slack") {
           return <SlackAuthFlow />
-        } else if (selectedConnectorId == "dropbox") {
+        } else if (selectedConnectorId === "dropbox") {
           return <DropboxAuthFlow />
-        } else if (selectedConnectorId == "intercom") {
-          return <IntercomAuthFlow />
-        } else if (selectedConnectorId == "hubspot") {
+        } else if (selectedConnectorId === "hubspot") {
           return <HubspotAuthFlow />
-        } else if (selectedConnectorId == "readme") {
+        } else if (selectedConnectorId === "readme") {
           return <ReadmeAuthFlow />
-        } else if (selectedConnectorId == "salesforce") {
+        } else if (selectedConnectorId === "salesforce") {
           return <SalesforceAuthFlow />
-        } else if (selectedConnectorId == "web") {
+        } else if (selectedConnectorId === "web") {
           return <WebAuthFlow />
         }
          else {

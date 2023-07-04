@@ -55,6 +55,7 @@ const ProductsTable: FC = function () {
   const { appId, userId } = useUserStateContext();
 
   const [name, setName] = useState("");
+  const [linkModalUrl, setLinkModalUrl] = useState("");
   const [logoUrl, setLogoUrl] = useState("");
   const [enabledConnectors, setEnabledConnectors] = useState<string[]>([]);
   const [whitelabel, setWhitelabel] = useState(false);
@@ -69,7 +70,6 @@ const ProductsTable: FC = function () {
     { id: "slack", name: "Slack" },
     { id: "dropbox", name: "Dropbox" },
     { id: "zendesk", name: "Zendesk" },
-    { id: "intercom", name: "Intercom" },
     { id: "hubspot", name: "Hubspot" },
     { id: "notion", name: "Notion" },
     { id: "readme", name: "Readme.com" },
@@ -86,8 +86,9 @@ const ProductsTable: FC = function () {
         .select("*")
         .eq("app_id", appId);
       if (error) console.log(error);
-      if (data && data[0]) {
+      if (data?.[0]) {
         setName(data[0].name);
+        setLinkModalUrl(data[0].custom_auth_url);
         setLogoUrl(data[0].logo);
         if (data[0].enabled_connectors !== null) {
           setEnabledConnectors(data[0].enabled_connectors);
@@ -107,7 +108,7 @@ const ProductsTable: FC = function () {
         .select("*")
         .eq("app_id", appId);
       if (error) console.log(error);
-      if (data && data[0]) {
+      if (data?.[0]) {
         setWebhookUrl(data[0].webhook_url);
       }
       setWebhookLoading(false);
@@ -138,6 +139,7 @@ const ProductsTable: FC = function () {
       .upsert({
         name,
         logo: downloadUrl,
+        custom_auth_url: linkModalUrl,
         app_id: appId,
         enabled_connectors: enabledConnectors,
         whitelabel: whitelabel,
@@ -223,6 +225,17 @@ const ProductsTable: FC = function () {
             />
           </div>
           <div>
+            <Label htmlFor="apiKeys.newKey">Link modal URL</Label>
+            <TextInput
+              id="apiKeys.newKey"
+              name="apiKeys.newKey"
+              className="mt-1"
+              value={linkModalUrl}
+              onChange={(e) => setLinkModalUrl(e.target.value)}
+              helperText="URL to your company link modal."
+            />
+          </div>
+          <div>
             <Label htmlFor="apiKeys.newKey">Logo</Label>
             <TextInput
               id="apiKeys.newKey"
@@ -237,6 +250,7 @@ const ProductsTable: FC = function () {
             <Label htmlFor="apiKeys.newKey">Enabled Connectors</Label>
             {allConnectors.map((connector) => (
               <ConnectorCheckbox
+                key={connector.id}
                 connectorId={connector.id}
                 connectorName={connector.name}
               />
@@ -251,7 +265,7 @@ const ProductsTable: FC = function () {
               onChange={() => setWhitelabel(!whitelabel)}
             />
           </div>
-          <div className="justify-beginning flex">
+          <div className="flex justify-start">
             <Button color="primary" onClick={updateSettings}>
               {loading && <Spinner className="mr-3" />}
               Save
@@ -276,7 +290,7 @@ const ProductsTable: FC = function () {
               helperText="Webhook URL to send 24-hr sync data to. Psychic will send POST requests to this URL for each connector you have enabled."
             />
           </div>
-          <div className="justify-beginning flex">
+          <div className="flex justify-start">
             <Button color="primary" onClick={updateSync}>
               {webhookLoading && <Spinner className="mr-3" />}
               Save

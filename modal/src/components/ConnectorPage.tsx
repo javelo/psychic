@@ -24,7 +24,6 @@ import ZendeskIcon from "./icons/ZendeskIcon";
 import GithubIcon from "./icons/GithubIcon";
 import SlackIcon from "./icons/SlackIcon";
 import DropboxIcon from "./icons/DropboxIcon";
-import IntercomIcon from "./icons/IntercomIcon";
 import HubspotIcon from "./icons/HubspotIcon";
 import ReadmeIcon from "./icons/ReadmeIcon";
 import SalesforceIcon from "./icons/SalesforceIcon";
@@ -97,14 +96,6 @@ const connectors = [
     active: true
   },
   {
-    name: "Intercom",
-    id: "intercom",
-    icon: IntercomIcon,
-    label: "Alpha",
-    labelColor: "warning",
-    active: true
-  },
-  {
     name: "Hubspot",
     id: "hubspot",
     icon: HubspotIcon,
@@ -139,7 +130,7 @@ const ConnectorPage: React.FC = () => {
     setCurrentStep(2)
     setConnectorName(connectorName)
     setSelectedConnectorId(connectorId)
-    if (connectorId == 'notion' || connectorId == 'confluence' || connectorId == 'slack' || connectorId == 'dropbox' || connectorId == 'intercom' || connectorId == 'hubspot' || connectorId == 'salesforce' || connectorId == 'gdrive') {
+    if (connectorId === 'notion' || connectorId === 'confluence' || connectorId === 'slack' || connectorId === 'dropbox' || connectorId === 'hubspot' || connectorId === 'salesforce' || connectorId === 'gdrive') {
       console.log('hello')
       startConnectorAuthFlow(window, connectorId)
     }

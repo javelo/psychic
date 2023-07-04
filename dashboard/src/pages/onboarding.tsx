@@ -2,8 +2,6 @@
 import { Breadcrumb, Tabs, TextInput } from "flowbite-react";
 import type { FC } from "react";
 import replitShowFiles from "../assets/replit-show-files.png";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import { HiHome } from "react-icons/hi";
 import NavbarSidebarLayout from "../layouts/navbar-sidebar";
@@ -72,10 +70,15 @@ const OnboardingPage: FC = function () {
                       </Text>
                       <span className="flex flex-row items-center space-x-2">
                         <Text>To view the source code, click</Text>
-                        <img className="h-8" src={replitShowFiles} />
+                        <img
+                          alt="Replit ShowFiles button"
+                          className="h-8"
+                          src={replitShowFiles}
+                        />
                         <Text>below.</Text>
                       </span>
                       <iframe
+                        title="Using LangChain with Psychic"
                         height="400px"
                         className="w-full"
                         src="https://replit.com/@JasonFan6/Connect-SaaS-data-to-ChatGPT-using-Psychic-and-LangChain?embed=true"
@@ -116,10 +119,15 @@ const OnboardingPage: FC = function () {
                       </Text>
                       <span className="flex flex-row items-center space-x-2">
                         <Text>To view the source code, click</Text>
-                        <img className="h-8" src={replitShowFiles} />
+                        <img
+                          alt="Replit ShowFiles button"
+                          className="h-8"
+                          src={replitShowFiles}
+                        />
                         <Text>below.</Text>
                       </span>
                       <iframe
+                        title="Using the Psychic API"
                         height="400px"
                         className="w-full"
                         src="https://replit.com/@JasonFan6/Connect-SaaS-data-to-ChatGPT-using-Psychic-APIs?embed=true"
@@ -127,50 +135,6 @@ const OnboardingPage: FC = function () {
                     </div>
                   </Tabs.Item>
                 </Tabs.Group>
-              </div>
-              <div>
-                <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                  Step 3: Connect more data sources with Psychic Link
-                </h2>
-                <Text>
-                  <a
-                    className="text-blue-400"
-                    href="https://docs.psychic.dev/psychic-link"
-                  >
-                    Psychic Link
-                  </a>{" "}
-                  can be added to any React application to let your users
-                  connect their own data sources.
-                </Text>
-                <Text className="mb-4">
-                  You can load these documents and use them with LangChain just
-                  like you did with your own documents.
-                </Text>
-                <Text className="mb-4">Here's an example:</Text>
-                <SyntaxHighlighter language="javascript" style={dracula}>
-                  {`import React, { useState } from 'react';
-import { usePsychicLink } from '@psychic-api/link'; //use custom version
-
-const PsychicDemo: React.FC = () => {
-  const [connection, setConnection] = useState(null)
-  
-  const psychicCallback = (newConnection) => {
-    setConnection(newConnection)
-    fetchDocumentsFromServer(newConnection.accountId, newConnection.connectorId) // Send a request to your backend to fetch documents using the Psychic API endpoints or Python library.
-  }
-
-  const { open, isReady, isLoading, error } = usePsychicLink(publicKey, psychicCallback) // publicKey is your Psychic public key
-  const accountId = getUserId() // Psychic Account IDs should map to the unique ID of the user creating this connection
-  
-  return (
-    <button onClick={() => {
-      open(accountId)
-    }} >
-      Connect
-    </button>
-  )
-}`}
-                </SyntaxHighlighter>
               </div>
               <div>
                 <a

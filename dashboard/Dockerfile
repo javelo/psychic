@@ -2,7 +2,6 @@ from node:18-buster-slim as build
 
 WORKDIR /app
 COPY package.json yarn.lock ./
-COPY psychic-link ./psychic-link
 RUN yarn install
 COPY . .
 

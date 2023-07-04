@@ -35,7 +35,8 @@ const SlackConnectorPage: FC = function () {
   async function authorize() {
     setAuthLoading(true);
     const url =
-      import.meta.env.VITE_SERVER_URL + "/set-custom-connector-credentials";
+      import.meta.env.VITE_PSYCHIC_API_URL +
+      "/set-custom-connector-credentials";
     const payload = {
       connector_id: "slack",
       credential: {
@@ -72,7 +73,8 @@ const SlackConnectorPage: FC = function () {
 
   useEffect(() => {
     async function getConnectorStatus() {
-      const url = import.meta.env.VITE_SERVER_URL + "/get-connector-status";
+      const url =
+        import.meta.env.VITE_PSYCHIC_API_URL + "/get-connector-status";
       console.log(url);
       const payload = {
         connector_id: "slack",
@@ -106,7 +108,7 @@ const SlackConnectorPage: FC = function () {
 
   const deleteConnection = async (accountId: string, i: number) => {
     setDeleteLoading(true);
-    const url = import.meta.env.VITE_SERVER_URL + "/delete-connection";
+    const url = import.meta.env.VITE_PSYCHIC_API_URL + "/delete-connection";
     const payload = {
       connector_id: "slack",
       account_id: accountId,

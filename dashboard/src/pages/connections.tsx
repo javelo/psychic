@@ -202,7 +202,10 @@ const AllConnectionsTable: FC = function () {
       </Table.Head>
       <Table.Body className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
         {testConnections.map((connection) => (
-          <Table.Row className="hover:bg-gray-100 dark:hover:bg-gray-700">
+          <Table.Row
+            key={connection.name}
+            className="hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
             <Table.Cell className="w-4 p-4">
               <div className="flex items-center">
                 <Checkbox aria-describedby="checkbox-1" id="checkbox-1" />

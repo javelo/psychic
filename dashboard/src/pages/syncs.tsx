@@ -75,10 +75,10 @@ const ProductsTable: FC = function () {
       .select("*")
       .eq("app_id", appId);
     if (error) console.log(error);
-    if (data && data[0]) {
+    if (data?.[0]) {
       setWebhookUrl(data[0].webhook_url);
       console.log(data[0].results);
-      setSyncResult(data[0].results);
+      setSyncResult(data[0].results); // called after testSync because of this
     }
     setWebhookLoading(false);
     setManualSyncLoading(false);
@@ -92,7 +92,7 @@ const ProductsTable: FC = function () {
 
   async function testSync() {
     setManualSyncLoading(true);
-    const url = import.meta.env.VITE_SERVER_URL + "/run-sync";
+    const url = import.meta.env.VITE_PSYCHIC_API_URL + "/run-sync";
     const payload = {
       sync_all: false,
     };
@@ -149,7 +149,7 @@ const ProductsTable: FC = function () {
               helperText="Psychic will send POST requests to this URL for each connector you have enabled every 24 hours."
             />
           </div>
-          <div className="justify-beginning flex">
+          <div className="flex justify-start">
             <Button color="primary" onClick={updateSync}>
               {webhookLoading && <Spinner className="mr-3" />}
               Save
@@ -176,7 +176,7 @@ const ProductsTable: FC = function () {
           <Text className="text-gray-500 dark:text-gray-400">
             Run a sync manually to test your webhook.
           </Text>
-          <div className="justify-beginning flex">
+          <div className="flex justify-start">
             <Button
               color="primary"
               disabled={webhookLoading}

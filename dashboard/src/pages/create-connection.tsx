@@ -2,9 +2,7 @@
 import { Breadcrumb, Button, Label, TextInput, Spinner } from "flowbite-react";
 import type { FC } from "react";
 import { useState } from "react";
-// import { usePsychicLink } from "@psychic-api/link"; //use custom version
-import { usePsychicLink } from "../../psychic-link"; //use custom version
-import { usePostHog } from "posthog-js/react";
+import usePsychicLink from "../helpers/usePsychicLink";
 
 import { HiHome } from "react-icons/hi";
 import NavbarSidebarLayout from "../layouts/navbar-sidebar";
@@ -57,17 +55,12 @@ export const ConnectorPlayground: FC<ConnectorPlaygroundProps> = function ({
   const [accountId, setAccountId] = useState<string>("");
   const [newConnection, setNewConnection] = useState<any>(null);
 
-  const posthog = usePostHog();
-
   const { open, isReady, isLoading, error } = usePsychicLink(
     publicKey,
-    import.meta.env.VITE_PSYCHIC_API_URL ?? '',
+    import.meta.env.VITE_PSYCHIC_API_URL ?? "",
     (newConnection: { accountId: string; connectorId: string }) => {
       setNewConnection(newConnection);
       console.log(newConnection);
-      posthog.capture("connector_playground_connection_created", {
-        connection: newConnection,
-      });
     }
   );
 

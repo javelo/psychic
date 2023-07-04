@@ -1,7 +1,6 @@
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "../lib/supabaseClient";
-import { usePostHog } from "posthog-js/react";
 import { v4 as uuidv4 } from "uuid";
 
 interface UserStateContextProps {
@@ -25,8 +24,6 @@ export function UserStateProvider({ children }: PropsWithChildren) {
   const [fullName, setFullName] = useState(null);
   const [userId, setUserId] = useState("");
 
-  const posthog = usePostHog();
-
   const fetchData = async () => {
     // TODO #1: Replace with your JWT template name
     console.log("fetching data");
@@ -42,7 +39,7 @@ export function UserStateProvider({ children }: PropsWithChildren) {
       const { data } = await supabase.from("users").select().eq("id", id);
       console.log(data);
 
-      if (data && data[0]) {
+      if (data?.[0]) {
         setBearer(data[0].secret_key);
         setAppId(data[0].app_id);
         setCompletedOnboarding(data[0].completed_onboarding);
@@ -50,10 +47,6 @@ export function UserStateProvider({ children }: PropsWithChildren) {
         setAvatarUrl(metadata.avatar_url);
         setFullName(metadata.full_name);
         setUserId(id);
-        posthog!.identify(id, {
-          email: email,
-          app_id: data[0].app_id,
-        });
       } else {
         // Create the user row if it doesn't exist
 
@@ -67,7 +60,7 @@ export function UserStateProvider({ children }: PropsWithChildren) {
           })
           .select();
 
-        if (response.data && response.data[0]) {
+        if (response.data?.[0]) {
           const data = response.data[0];
           setBearer(data.secret_key);
           setAppId(data.app_id);
@@ -76,10 +69,6 @@ export function UserStateProvider({ children }: PropsWithChildren) {
           setAvatarUrl(metadata.avatar_url);
           setFullName(metadata.full_name);
           setUserId(id);
-          posthog!.identify(id, {
-            email: email,
-            app_id: data.app_id,
-          });
         }
       }
     } catch (error) {
