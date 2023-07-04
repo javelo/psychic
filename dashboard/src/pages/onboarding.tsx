@@ -129,50 +129,6 @@ const OnboardingPage: FC = function () {
                 </Tabs.Group>
               </div>
               <div>
-                <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                  Step 3: Connect more data sources with Psychic Link
-                </h2>
-                <Text>
-                  <a
-                    className="text-blue-400"
-                    href="https://docs.psychic.dev/psychic-link"
-                  >
-                    Psychic Link
-                  </a>{" "}
-                  can be added to any React application to let your users
-                  connect their own data sources.
-                </Text>
-                <Text className="mb-4">
-                  You can load these documents and use them with LangChain just
-                  like you did with your own documents.
-                </Text>
-                <Text className="mb-4">Here's an example:</Text>
-                <SyntaxHighlighter language="javascript" style={dracula}>
-                  {`import React, { useState } from 'react';
-import { usePsychicLink } from '@psychic-api/link'; //use custom version
-
-const PsychicDemo: React.FC = () => {
-  const [connection, setConnection] = useState(null)
-  
-  const psychicCallback = (newConnection) => {
-    setConnection(newConnection)
-    fetchDocumentsFromServer(newConnection.accountId, newConnection.connectorId) // Send a request to your backend to fetch documents using the Psychic API endpoints or Python library.
-  }
-
-  const { open, isReady, isLoading, error } = usePsychicLink(publicKey, psychicCallback) // publicKey is your Psychic public key
-  const accountId = getUserId() // Psychic Account IDs should map to the unique ID of the user creating this connection
-  
-  return (
-    <button onClick={() => {
-      open(accountId)
-    }} >
-      Connect
-    </button>
-  )
-}`}
-                </SyntaxHighlighter>
-              </div>
-              <div>
                 <a
                   className="mr-3 cursor-pointer rounded border border-blue-600 p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:inline"
                   href="/create-connection"
