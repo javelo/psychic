@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.21.0",
-    "@psychic-api/link": "file:./psychic-link",
     "@supabase/auth-ui-react": "^0.4.2",
     "@supabase/auth-ui-shared": "^0.1.6",
     "@supabase/supabase-js": "^2.26.0",
@@ -43,7 +42,6 @@
     "react-icons": "^4.10.1",
     "react-markdown": "^8.0.7",
     "react-sortablejs": "^6.1.4",
-    "react-syntax-highlighter": "^15.5.0",
     "remark-gfm": "^3.0.1",
     "sortablejs": "^1.15.0",
     "svgmap": "^2.10.1",

@@ -4,7 +4,7 @@ const PSYCHIC_URL = 'https://link.psychic.dev';
 // const PSYCHIC_API_URL = 'http://localhost:8080'
 const PSYCHIC_API_URL = 'https://sidekick-ezml2kwdva-uc.a.run.app'; // We need to be able to provide this url as a parameter
 
-export function usePsychicLink(public_key: string, public_api_url: string, onSuccessCallback: Function) {
+function usePsychicLink(public_key: string, public_api_url: string, onSuccessCallback: Function) {
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -78,3 +78,5 @@ export function usePsychicLink(public_key: string, public_api_url: string, onSuc
 
   return { open, isReady, isLoading, error};
 }
+
+export default usePsychicLink;
