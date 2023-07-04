@@ -70,10 +70,15 @@ const OnboardingPage: FC = function () {
                       </Text>
                       <span className="flex flex-row items-center space-x-2">
                         <Text>To view the source code, click</Text>
-                        <img className="h-8" src={replitShowFiles} />
+                        <img
+                          alt="Replit ShowFiles button"
+                          className="h-8"
+                          src={replitShowFiles}
+                        />
                         <Text>below.</Text>
                       </span>
                       <iframe
+                        title="Using LangChain with Psychic"
                         height="400px"
                         className="w-full"
                         src="https://replit.com/@JasonFan6/Connect-SaaS-data-to-ChatGPT-using-Psychic-and-LangChain?embed=true"
@@ -114,10 +119,15 @@ const OnboardingPage: FC = function () {
                       </Text>
                       <span className="flex flex-row items-center space-x-2">
                         <Text>To view the source code, click</Text>
-                        <img className="h-8" src={replitShowFiles} />
+                        <img
+                          alt="Replit ShowFiles button"
+                          className="h-8"
+                          src={replitShowFiles}
+                        />
                         <Text>below.</Text>
                       </span>
                       <iframe
+                        title="Using the Psychic API"
                         height="400px"
                         className="w-full"
                         src="https://replit.com/@JasonFan6/Connect-SaaS-data-to-ChatGPT-using-Psychic-APIs?embed=true"

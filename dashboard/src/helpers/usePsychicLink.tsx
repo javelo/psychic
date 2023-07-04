@@ -1,9 +1,15 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 
-const PSYCHIC_URL = import.meta.env.VITE_PSYCHIC_LINK_OAUTH_URL ?? 'https://psychic.link';
-const PSYCHIC_API_URL = import.meta.env.VITE_PSYCHIC_API_URL ?? 'https://api.psychic.link';
+const PSYCHIC_URL =
+  import.meta.env.VITE_PSYCHIC_LINK_OAUTH_URL ?? "https://psychic.link";
+const PSYCHIC_API_URL =
+  import.meta.env.VITE_PSYCHIC_API_URL ?? "https://api.psychic.link";
 
-function usePsychicLink(public_key: string, public_api_url: string, onSuccessCallback: Function) {
+function usePsychicLink(
+  public_key: string,
+  public_api_url: string | null,
+  onSuccessCallback: Function
+) {
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -13,15 +19,18 @@ function usePsychicLink(public_key: string, public_api_url: string, onSuccessCal
   async function getCustomAuthUrl(public_key: string) {
     try {
       // Use the public key as the bearer
-      const response = await fetch(`${public_api_url ?? PSYCHIC_API_URL}/get-link-settings`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${public_key}`,
-          'Content-Type': 'application/json'
+      const response = await fetch(
+        `${public_api_url ?? PSYCHIC_API_URL}/get-link-settings`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${public_key}`,
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
       const data = await response.json();
-      if (data && data.settings && data.settings.custom_auth_url) {
+      if (data?.settings?.custom_auth_url) {
         return data.settings.custom_auth_url;
       } else {
         return null;
@@ -31,17 +40,16 @@ function usePsychicLink(public_key: string, public_api_url: string, onSuccessCal
     }
   }
 
-
   async function open(accountId: string) {
-    setIsLoading(true)
+    setIsLoading(true);
 
     // Call the get-link-settings endpoint to get any custom settings
     const customUrl = await getCustomAuthUrl(public_key);
-    var url = ""
+    let url = "";
     if (customUrl) {
-      url = `${customUrl}?public_key=${public_key}&account_id=${accountId}`
+      url = `${customUrl}?public_key=${public_key}&account_id=${accountId}`;
     } else {
-      url = `${PSYCHIC_URL}?public_key=${public_key}&account_id=${accountId}`
+      url = `${PSYCHIC_URL}?public_key=${public_key}&account_id=${accountId}`;
     }
 
     if (windowObjectReference === null || windowObjectReference.closed) {
@@ -49,7 +57,11 @@ function usePsychicLink(public_key: string, public_api_url: string, onSuccessCal
       const height = 800;
       const left = (window.screen.width - width) / 2;
       const top = (window.screen.height - height) / 2;
-      windowObjectReference = window.open(url, '_blank', `addressbar=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=${width}, height=${height}, top=${top}, left=${left}`)
+      windowObjectReference = window.open(
+        url,
+        "_blank",
+        `addressbar=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=${width}, height=${height}, top=${top}, left=${left}`
+      );
     } else {
       windowObjectReference.focus();
     }
@@ -57,25 +69,28 @@ function usePsychicLink(public_key: string, public_api_url: string, onSuccessCal
 
   const handleMessage = useCallback((event: MessageEvent) => {
     const data = event.data;
-    if (data && data.psychic_link && data.account_id) {
-      setIsLoading(false)
-      onSuccessCallback({accountId: data.account_id, connectorId: data.connector_id})
+    if (data?.psychic_link && data.account_id) {
+      setIsLoading(false);
+      onSuccessCallback({
+        accountId: data.account_id,
+        connectorId: data.connector_id,
+      });
     } else {
-      setError("Connection failed. Please try again later.")
+      setError("Connection failed. Please try again later.");
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     // Add event listeners to get auth codes
-    window.addEventListener('message', handleMessage, false);
-    setIsReady(true)
+    window.addEventListener("message", handleMessage, false);
+    setIsReady(true);
 
     return () => {
-      window.removeEventListener('message', handleMessage);
+      window.removeEventListener("message", handleMessage);
     };
   }, []);
 
-  return { open, isReady, isLoading, error};
+  return { open, isReady, isLoading, error };
 }
 
 export default usePsychicLink;

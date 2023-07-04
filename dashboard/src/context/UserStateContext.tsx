@@ -39,7 +39,7 @@ export function UserStateProvider({ children }: PropsWithChildren) {
       const { data } = await supabase.from("users").select().eq("id", id);
       console.log(data);
 
-      if (data && data[0]) {
+      if (data?.[0]) {
         setBearer(data[0].secret_key);
         setAppId(data[0].app_id);
         setCompletedOnboarding(data[0].completed_onboarding);
@@ -60,7 +60,7 @@ export function UserStateProvider({ children }: PropsWithChildren) {
           })
           .select();
 
-        if (response.data && response.data[0]) {
+        if (response.data?.[0]) {
           const data = response.data[0];
           setBearer(data.secret_key);
           setAppId(data.app_id);

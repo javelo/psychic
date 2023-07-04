@@ -149,7 +149,7 @@ const ProductsTable: FC = function () {
               helperText="Psychic will send POST requests to this URL for each connector you have enabled every 24 hours."
             />
           </div>
-          <div className="justify-beginning flex">
+          <div className="flex justify-start">
             <Button color="primary" onClick={updateSync}>
               {webhookLoading && <Spinner className="mr-3" />}
               Save
@@ -176,7 +176,7 @@ const ProductsTable: FC = function () {
           <Text className="text-gray-500 dark:text-gray-400">
             Run a sync manually to test your webhook.
           </Text>
-          <div className="justify-beginning flex">
+          <div className="flex justify-start">
             <Button
               color="primary"
               disabled={webhookLoading}

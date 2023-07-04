@@ -57,7 +57,7 @@ export const ConnectorPlayground: FC<ConnectorPlaygroundProps> = function ({
 
   const { open, isReady, isLoading, error } = usePsychicLink(
     publicKey,
-    import.meta.env.VITE_PSYCHIC_API_URL ?? '',
+    import.meta.env.VITE_PSYCHIC_API_URL ?? "",
     (newConnection: { accountId: string; connectorId: string }) => {
       setNewConnection(newConnection);
       console.log(newConnection);

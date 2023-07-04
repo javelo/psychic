@@ -251,7 +251,7 @@ const ProductsTable: FC = function () {
               onChange={() => setWhitelabel(!whitelabel)}
             />
           </div>
-          <div className="justify-beginning flex">
+          <div className="flex justify-start">
             <Button color="primary" onClick={updateSettings}>
               {loading && <Spinner className="mr-3" />}
               Save
@@ -276,7 +276,7 @@ const ProductsTable: FC = function () {
               helperText="Webhook URL to send 24-hr sync data to. Psychic will send POST requests to this URL for each connector you have enabled."
             />
           </div>
-          <div className="justify-beginning flex">
+          <div className="flex justify-start">
             <Button color="primary" onClick={updateSync}>
               {webhookLoading && <Spinner className="mr-3" />}
               Save

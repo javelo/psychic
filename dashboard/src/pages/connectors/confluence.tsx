@@ -33,7 +33,8 @@ const ConfluenceConnectorPage: FC = function () {
   async function authorize() {
     setAuthLoading(true);
     const url =
-      import.meta.env.VITE_PSYCHIC_API_URL + "/set-custom-connector-credentials";
+      import.meta.env.VITE_PSYCHIC_API_URL +
+      "/set-custom-connector-credentials";
     const payload = {
       connector_id: "gdrive",
       credential: JSON.parse(clientSecret),
@@ -66,7 +67,8 @@ const ConfluenceConnectorPage: FC = function () {
 
   useEffect(() => {
     async function getConnectorStatus() {
-      const url = import.meta.env.VITE_PSYCHIC_API_URL + "/get-connector-status";
+      const url =
+        import.meta.env.VITE_PSYCHIC_API_URL + "/get-connector-status";
       console.log(url);
       const payload = {
         connector_id: "confluence",

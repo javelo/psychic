@@ -38,7 +38,8 @@ const NotionConnectorPage: FC = function () {
   async function authorize(deleteCredentials: boolean) {
     setAuthLoading(true);
     const url =
-      import.meta.env.VITE_PSYCHIC_API_URL + "/set-custom-connector-credentials";
+      import.meta.env.VITE_PSYCHIC_API_URL +
+      "/set-custom-connector-credentials";
     let credential = null;
     if (!deleteCredentials) {
       credential = {
@@ -83,7 +84,8 @@ const NotionConnectorPage: FC = function () {
 
   useEffect(() => {
     async function getConnectorStatus() {
-      const url = import.meta.env.VITE_PSYCHIC_API_URL + "/get-connector-status";
+      const url =
+        import.meta.env.VITE_PSYCHIC_API_URL + "/get-connector-status";
       console.log(url);
       const payload = {
         connector_id: "notion",
