@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 const PSYCHIC_URL =
   import.meta.env.VITE_PSYCHIC_LINK_OAUTH_URL ?? "https://psychic.link";
@@ -67,20 +67,20 @@ function usePsychicLink(
     }
   }
 
-  const handleMessage = useCallback((event: MessageEvent) => {
-    const data = event.data;
-    if (data?.psychic_link && data.account_id) {
-      setIsLoading(false);
-      onSuccessCallback({
-        accountId: data.account_id,
-        connectorId: data.connector_id,
-      });
-    } else {
-      setError("Connection failed. Please try again later.");
-    }
-  }, []);
-
   useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      const data = event.data;
+      if (data?.psychic_link && data.account_id) {
+        setIsLoading(false);
+        onSuccessCallback({
+          accountId: data.account_id,
+          connectorId: data.connector_id,
+        });
+      } else {
+        setError("Connection failed. Please try again later.");
+      }
+    };
+
     // Add event listeners to get auth codes
     window.addEventListener("message", handleMessage, false);
     setIsReady(true);
@@ -88,7 +88,7 @@ function usePsychicLink(
     return () => {
       window.removeEventListener("message", handleMessage);
     };
-  }, []);
+  }, [onSuccessCallback]);
 
   return { open, isReady, isLoading, error };
 }
